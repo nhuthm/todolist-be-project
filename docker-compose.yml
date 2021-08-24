@@ -1,0 +1,28 @@
+version: '3'
+services:
+    database:
+        #This is where we create container from image calls mongo
+        image: 'mongo' 
+
+        #Name of the container
+        container_name: 'todolist-container'
+
+        #Setup environment
+        environment:
+            #Name of our database (must be the same from js file)
+            - MONGO_INITDB_DATABASE=todolist-project
+
+            #Username of the root
+            - MONGO_INITDB_ROOT_USERNAME=nhuthuynh
+
+            #Password of the user of the root
+            - MONGO_INITDB_ROOT_PASSWORD=nrj8kueb
+
+        #Create volume to connect between JS file with docker compose.yml file to get their variables
+        volumes:
+            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+            #This one will help us to setup data for the created container: my-first-mongo-container
+            - ./mongo-volume:/data/db
+        ports:
+            - '27017-27019:27017-27019'
