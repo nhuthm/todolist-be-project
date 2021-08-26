@@ -11,6 +11,15 @@ export class TaskRoutes {
       });
     });
 
-    app.route("/task").post(this.taskController.addNewTask);
+    app
+      .route("/task")
+      .post(this.taskController.addNewTask)
+      .get(this.taskController.getAllTask);
+
+    app
+      .route("/task/:taskID")
+      .get(this.taskController.getTaskByID)
+      .put(this.taskController.updateTask)
+      .delete(this.taskController.deleteTask);
   }
 }
