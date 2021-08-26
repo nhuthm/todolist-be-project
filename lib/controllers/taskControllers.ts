@@ -21,7 +21,7 @@ export class TaskController {
 
   // Get task by ID
   public getTaskByID(req: Request, res: Response) {
-    Task.findById(req.params.taskId, (err, task) => {
+    Task.findById(req.params.taskID, (err, task) => {
       if (err) {
         res.send(err);
       }
